@@ -2,9 +2,13 @@ import postcssImport from 'postcss-import';
 import postcssMixins from 'postcss-mixins';
 import postcssPresetMantine from 'postcss-preset-mantine';
 import postcssSimpleVars from 'postcss-simple-vars';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 export default {
   plugins: [
+    tailwindcss,
+    autoprefixer,
     postcssImport,
     postcssMixins,
     postcssPresetMantine({}),

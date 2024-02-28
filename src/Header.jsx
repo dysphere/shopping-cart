@@ -1,8 +1,7 @@
-import { Menu, Group, Center, Burger, Container } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import './input.css';
+import { Menu, Center, Container } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from "react-router-dom";
-import classes from './mantine.module.css';
 
 const links = [
     {link: '#',
@@ -17,12 +16,11 @@ const links = [
 ];
 
 const Header = () => {
-    const [opened, { toggle }] = useDisclosure(false);
 
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
           <Menu.Item key={item.link}>
-            <Link to={item.link} className={classes.link}>{item.label}</Link>
+            <Link to={item.link}>{item.label}</Link>
             </Menu.Item>
         ));
 
@@ -32,10 +30,9 @@ const Header = () => {
                 <Menu.Target>
                   <Link
                     to={link.link}
-                    className={classes.link}
                   >
                     <Center>
-                      <span className={classes.linkLabel}>{link.label}</span>
+                      <span>{link.label}</span>
                       <IconChevronDown size="0.9rem" stroke={1.5} />
                     </Center>
                   </Link>
@@ -49,7 +46,6 @@ const Header = () => {
             <Link
               key={link.label}
               to={link.link}
-              className={classes.link}
             >
               {link.label}
             </Link>
@@ -57,14 +53,15 @@ const Header = () => {
         });
 
         return (
-            <header className={classes.header}>
-              <Container size="md">
-                <div className={classes.inner}>
+            <header>
+              <Container fluid>
+                <div className="flex flex-row justify-around">
+                    <div className="linkSize">
                     <Link to="/">Home</Link>
-                  <Group gap={5} visibleFrom="sm">
+                    </div>
+                    <div className="linkSize flex flex-row">
                     {items}
-                  </Group>
-                  <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+                  </div>
                 </div>
               </Container>
             </header>

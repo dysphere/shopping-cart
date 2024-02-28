@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.linkSize {
+    width: 400px;
+}
+
+.hometop {
+    padding-top: 50px;
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+
+h1, .homepara {
+    max-width: 500px;
+}
+
+.card {
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+}
+
+.hide {
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+.text-pad {
+    padding-top: 300px;
+    text-align: center;
+}
+
+.embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+  }
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .carousel-name {
+    color: white;
+    padding-left: 33vw;
+    padding-right: 33vw;
+  }
+
+.small {
+    width: 50px;
+}
+
+.small-container {
+    width: 100px;
+}
+
+@media (min-width: 1920px) {
+    .carousel-title {
+        padding-left: 425px;
+    }
+  }
