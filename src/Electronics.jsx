@@ -42,9 +42,9 @@ const useElectronics = () => {
 
 const ElectronicsCard = ({title, image, price, quantity, lowerNumber, higherNumber, addToCart, disabled}) => {
 
-return (<Card>
-    <Card.Section>
-        <Image src={image} alt={title}></Image>
+return (<Card className="size-96 flex justify-content-around items-center">
+    <Card.Section className="">
+        <Image src={image} alt={title} className="size-40 max-w-fit"></Image>
     </Card.Section>
     <Card.Section>
         <h2>{title}</h2>
@@ -114,7 +114,7 @@ if (error) return <p>A network error was encountered</p>;
 if (loading) return <p>Loading...</p>;
 
 return (
-<div className="flex">{cards}</div>
+<div className="flex flex-col md:flex-row md:flex-wrap gap-x-5 md:justify-center">{cards}</div>
 );
 }
 
