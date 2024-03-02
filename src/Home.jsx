@@ -1,10 +1,10 @@
-import { Carousel } from '@mantine/carousel';
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay';
 import { Paper, Title, Button, createTheme, MantineProvider } from "@mantine/core";
 import { Container, Text } from '@mantine/core';
+import { ShopProvider } from './ShopProvider';
 import Header from "./Header";
 
 const theme = createTheme({
@@ -84,6 +84,8 @@ const HomeCarousel = () => {
         </div>
       ));
       const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 4000 })])
+      const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
 
       const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
@@ -97,7 +99,8 @@ const HomeCarousel = () => {
         <div>
         <div className="embla">
       <div className="embla__viewport flex flex-col-reverse" ref={emblaRef}>
-        <div className="embla__container">
+        <div
+         className="embla__container">
           {slides}
         </div>
         <div className="flex justify-center">
@@ -111,10 +114,13 @@ const HomeCarousel = () => {
 }
 
 const Home = () => {
+
 return (<div><MantineProvider theme={theme}>
+    <ShopProvider>
     <Header></Header>
     <HomeTop></HomeTop>
     <HomeCarousel></HomeCarousel>
+    </ShopProvider>
     </MantineProvider>
     </div>)
 }

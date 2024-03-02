@@ -56,14 +56,6 @@ h1, .homepara {
     padding-right: 33vw;
   }
 
-.small {
-    width: 50px;
-}
-
-.small-container {
-    width: 100px;
-}
-
 @media (min-width: 1920px) {
     .carousel-title {
         padding-left: 425px;

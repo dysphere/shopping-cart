@@ -2,20 +2,25 @@ import './input.css';
 import { Menu, Center, Container } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from "react-router-dom";
-
-const links = [
-    {link: '#',
-    label: 'Shop',
-    links: [
-        {link: '/shop/electronics', label: 'Electronics'},
-        {link: '/shop/jewelry', label: 'Jewelry'},
-        {link:'/shop/mens%20clothing', label: `Men's Clothing`},
-        {link: '/shop/womens%20clothing', label: `Women's Clothing`},
-    ]},
-    {link: '/cart', label: 'Cart'},
-];
+import { useContext } from "react";
+import { ShopContext } from './ShopContext';
 
 const Header = () => {
+
+    const {cartItems} = useContext(ShopContext); 
+    const cartItemCount = cartItems.length;
+
+    const links = [
+        {link: '#',
+        label: 'Shop',
+        links: [
+            {link: '/shop/electronics', label: 'Electronics'},
+            {link: '/shop/jewelry', label: 'Jewelry'},
+            {link:'/shop/mens%20clothing', label: `Men's Clothing`},
+            {link: '/shop/womens%20clothing', label: `Women's Clothing`},
+        ]},
+        {link: '/cart', label: `Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ''}`},
+    ];
 
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
