@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import useEmblaCarousel from 'embla-carousel-react'
+import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { Paper, Title, Button, createTheme, MantineProvider } from "@mantine/core";
 import { Container, Text } from '@mantine/core';
@@ -79,36 +79,30 @@ const data = [
 
 const HomeCarousel = () => {
     const slides = data.map((item) => (
-        <div className="embla__slide" key={item.title}>
+        <Carousel.Slide key={item.title}>
           <Card {...item} />
-        </div>
+        </Carousel.Slide>
       ));
-      const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 4000 })])
-      const [selectedIndex, setSelectedIndex] = useState(0);
-    const [scrollSnaps, setScrollSnaps] = useState([]);
 
-      const scrollPrev = useCallback(() => {
-        if (emblaApi) emblaApi.scrollPrev()
-      }, [emblaApi])
-    
-      const scrollNext = useCallback(() => {
-        if (emblaApi) emblaApi.scrollNext()
-      }, [emblaApi])
+      const autoplay = useRef(Autoplay({ delay: 4000 }));
 
       return (
         <div>
-        <div className="embla">
-      <div className="embla__viewport flex flex-col-reverse" ref={emblaRef}>
-        <div
-         className="embla__container">
-          {slides}
-        </div>
-        <div className="flex justify-center">
-        <button className="embla__prev" onClick={scrollPrev}>Previous</button>
-        <button className="embla__next" onClick={scrollNext}>Next</button>
-        </div>
-      </div>
-    </div>
+        <Carousel
+        withIndicators
+      slideSize='100%'
+      align="start"
+      slidesToScroll={1}
+      loop
+      plugins={[autoplay.current]}
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
+      styles={{
+        indicator: { backgroundColor: 'white', border: '2px solid white' },
+        control: {backgroundColor: 'white'},
+      }}>
+      {slides}
+    </Carousel>
         </div>
       );
 }
