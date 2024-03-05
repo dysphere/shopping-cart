@@ -5,6 +5,8 @@ import Header from "./Header";
 
 const Cart = () => {
 
+    const {cartItems, addToCart} = useContext(ShopContext);
+    
     useEffect(() => {
         console.log(cartItems);
     }, [cartItems]);

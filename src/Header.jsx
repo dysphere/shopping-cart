@@ -1,5 +1,6 @@
 import './input.css';
-import { Menu, Center, Container } from '@mantine/core';
+import { Menu, Center, Container, Burger, Group, Flex, Drawer, NavLink } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -9,6 +10,7 @@ const Header = () => {
 
     const {cartItems} = useContext(ShopContext); 
     const cartItemCount = cartItems.length;
+    const [opened, {toggle, close}] = useDisclosure(false);
 
     const links = [
         {link: '#',
@@ -60,14 +62,29 @@ const Header = () => {
         return (
             <header>
               <Container fluid>
+                <Flex direction="column">
                 <div className="flex flex-row justify-around">
                     <div className="linkSize">
                     <Link to="/">Home</Link>
                     </div>
-                    <div className="linkSize flex flex-row">
+                    <Group gap={5} visibleFrom="sm">
                     {items}
-                  </div>
+                  </Group>
+                  <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
                 </div>
+                <div>
+                <Drawer opened={opened} onClose={close}
+                position="right">
+                  <NavLink component={Link} label="Shop">
+                    <NavLink component={Link} label="Electronics" to='/shop/electronics'></NavLink>
+                    <NavLink component={Link} label="Jewelry" to='/shop/jewelry'></NavLink>
+                    <NavLink component={Link} label={`Men's Clothing`} to='/shop/mens%20clothing'></NavLink>
+                    <NavLink component={Link} label={`Women's Clothing`} to='/shop/womens%20clothing'></NavLink>
+                  </NavLink>
+                  <NavLink component={Link} label={`Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ''}`} to='/cart'></NavLink>
+                </Drawer>
+                </div>
+                </Flex>
               </Container>
             </header>
           );

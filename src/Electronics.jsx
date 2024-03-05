@@ -1,72 +1,18 @@
-import { Card, Image, TextInput, Group, Button, createTheme, MantineProvider, Container } from "@mantine/core";
+import { createTheme, MantineProvider, Container } from "@mantine/core";
 import { useEffect, useState, useContext } from "react";
 import { ShopContext } from "./ShopContext";
 import { ShopProvider } from "./ShopProvider";
 import Header from "./Header";
+import { Label, ProductCard } from "./assets/CommonShop";
+import { useProducts } from "./assets/ProductHook";
 
 const theme = createTheme({
     /** Put your mantine theme override here */
   });
 
-const Label = () => {
-    return(<div><Container fluid><h1>
-        Electronics</h1></Container></div>)
-}
-
-const useElectronics = () => {
-    const [products, setProducts] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products/category/electronics', {mode: "cors"})
-        .then((response) => {
-            if (response.status >= 400) {
-                throw new Error("server error");
-              }
-              return response.json();
-        })
-        .then((response) => {
-            for (let i = 0; i < response.length; i++) {
-                response[i].quantity = 0;
-                response[i].disabled = false;
-            }
-            setProducts(response)
-        })
-        .catch((error) => setError(error))
-        .finally(() => setLoading(false));
-    }, [])
-
-    return {products, error, loading}
-}
-
-const ElectronicsCard = ({title, image, price, quantity, lowerNumber, higherNumber, addToCart, disabled}) => {
-
-return (<Card className="size-96 flex justify-content-around items-center">
-    <Card.Section className="">
-        <Image src={image} alt={title} className="size-40 max-w-fit"></Image>
-    </Card.Section>
-    <Card.Section>
-        <h2>{title}</h2>
-        <p>${price}</p>
-    </Card.Section>
-    <Card.Section>
-        <Group>
-        <button onClick={lowerNumber} disabled={disabled}>-</button>
-        <TextInput type="number"
-        label="Quantity purchased"
-        value={quantity}
-        readOnly></TextInput>
-        <button onClick={higherNumber}>+</button>
-        </Group>
-        <button onClick={addToCart}>Add to cart</button>
-    </Card.Section>
-</Card>)
-}
-
 const ElectronicsShop = () => {
 const {cartItems, addToCart} = useContext(ShopContext);
-const {products, error, loading} = useElectronics();
+const {products, error, loading} = useProducts({section: 'electronics'});
 const [productsState, setProductsState] = useState([]);
 
 useEffect(() => {
@@ -94,7 +40,7 @@ function higherCount(prodId) {
 
 const cards = !loading && !error && productsState ? productsState.map((product) => (
     <div key={product.id}>
-        <ElectronicsCard
+        <ProductCard
         title={product.title}
         image={product.image}
         price={product.price}
@@ -106,15 +52,11 @@ const cards = !loading && !error && productsState ? productsState.map((product) 
     </div>
 )) : null;
 
-useEffect(() => {
-    console.log(cartItems);
-}, [cartItems]);
-
 if (error) return <p>A network error was encountered</p>;
 if (loading) return <p>Loading...</p>;
 
 return (
-<div className="flex flex-col md:flex-row md:flex-wrap gap-x-5 md:justify-center">{cards}</div>
+<div className="flex flex-col md:flex-row md:flex-wrap md:justify-center">{cards}</div>
 );
 }
 
@@ -123,7 +65,7 @@ const Electronics = () => {
 return (<div><MantineProvider theme={theme}>
     <ShopProvider>
     <Header></Header>
-    <Label></Label>
+    <Label section="Electronics"></Label>
     <ElectronicsShop></ElectronicsShop>
     </ShopProvider>
     </MantineProvider></div>)

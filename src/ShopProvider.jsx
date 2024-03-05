@@ -18,8 +18,18 @@ export const ShopProvider = ({children}) => {
         });
     };
 
+    const removeFromCart = (product) => {
+        setCartItems((currentItems) => {
+            return currentItems.filter(() => {})
+        });
+    };
+
+    const lowerCartItems = (product) => {}
+
+    const raiseCartItems = (product) => {}
+
     return (
-    <ShopContext.Provider value={{ cartItems, addToCart }}>
+    <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart, lowerCartItems, raiseCartItems }}>
         {children}
       </ShopContext.Provider>
       );
