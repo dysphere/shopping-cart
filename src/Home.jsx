@@ -1,15 +1,11 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import { Paper, Title, Button, createTheme, MantineProvider } from "@mantine/core";
+import { Paper, Title, Button } from "@mantine/core";
 import { Container, Text } from '@mantine/core';
-import { ShopProvider } from './ShopProvider';
 import Header from "./Header";
 
-const theme = createTheme({
-    /** Put your mantine theme override here */
-  });
 
 const HomeTop = () => {
 return (
@@ -109,13 +105,10 @@ const HomeCarousel = () => {
 
 const Home = () => {
 
-return (<div><MantineProvider theme={theme}>
-    <ShopProvider>
+return (<div>
     <Header></Header>
     <HomeTop></HomeTop>
     <HomeCarousel></HomeCarousel>
-    </ShopProvider>
-    </MantineProvider>
     </div>)
 }
 

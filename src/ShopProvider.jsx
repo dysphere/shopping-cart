@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { ShopContext } from "./ShopContext";
+
 
 export const ShopProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
@@ -27,6 +28,21 @@ export const ShopProvider = ({children}) => {
     const lowerCartItems = (product) => {}
 
     const raiseCartItems = (product) => {}
+
+    useEffect(() => {
+        const cartCheck = sessionStorage.getItem('cartItems');
+        if (cartCheck) {
+            try {
+                setCartItems(JSON.parse(cartCheck));
+            } catch (e) {
+                console.error('Error parsing cart items:', e);
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems])
 
     return (
     <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart, lowerCartItems, raiseCartItems }}>

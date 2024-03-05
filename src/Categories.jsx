@@ -14,9 +14,9 @@ const Categories = () => {
         <Electronics/>
        ) : section === "jewelry" ? (
         <Jewelry/>
-       ): section === "mens%20clothing" ? (
+       ): section === "mens clothing" ? (
         <Mens/>
-       ) : section === "womens%20clothing" ? (
+       ) : section === "womens clothing" ? (
         <Womens/>
        ) :
        <DefaultCategory/>}
