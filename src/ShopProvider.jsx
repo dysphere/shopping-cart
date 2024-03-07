@@ -21,13 +21,33 @@ export const ShopProvider = ({children}) => {
 
     const removeFromCart = (product) => {
         setCartItems((currentItems) => {
-            return currentItems.filter(() => {})
+            return currentItems.filter((item) => {
+                return item.id != product.id;
+            })
         });
     };
 
-    const lowerCartItems = (product) => {}
+    const lowerCartItems = (product) => {
+        let itemQuant = product.quantity - 1;
+        if (itemQuant === 0) {
+            removeFromCart(product);
+        }
+        else {
+            setCartItems((currentItems) => {
+                return currentItems.map((item) => {
+                    return item.id === product.id ? {...item, quantity: Math.max(1, product.quantity - 1)} : item;
+                })
+            });
+        }
+    }
 
-    const raiseCartItems = (product) => {}
+    const raiseCartItems = (product) => {
+        setCartItems((currentItems) => {
+            return currentItems.map((item) => {
+                return item.id === product.id ? {...item, quantity: product.quantity + 1} : item;
+            })
+        })
+    }
 
     useEffect(() => {
         const cartCheck = sessionStorage.getItem('cartItems');

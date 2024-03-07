@@ -26,7 +26,7 @@ return (<Card className="size-96 flex justify-content-around items-center border
         readOnly></TextInput>
         <button onClick={higherNumber}>+</button>
         </Group>
-        <button onClick={addToCart}>Add to cart</button>
+        <button onClick={addToCart} disabled={disabled}>Add to cart</button>
         </div>
     </Card.Section>
 </Card>)
