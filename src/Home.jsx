@@ -10,8 +10,8 @@ import Header from "./Header";
 const HomeTop = () => {
 return (
     <div>
-    <Container fluid className="hometop flex flex-col items-center">
-      <h1>
+    <Container fluid className="hometop flex flex-col items-center pb-10">
+      <h1 className="font-bold">
         A store that covers your electronics, jewelry, and clothing needs
       </h1>
 
@@ -34,15 +34,13 @@ return (
       className="card overflow-x-hidden" >
         <div className="text-pad flex flex-col justify-center items-center">
         <div>
-        <Title order={1} className="carousel-name carousel-title">
+        <Title order={1} className="carousel-name carousel-title w-3 drop-shadow-[30px_35px_35px_rgba(0,0,0,1)]">
           {title}
         </Title>
       </div>
       <div>
-      <Link to={path} className="carousel-name">
-      <Button>
+      <Link to={path} className="carousel-name flex justify-center">
         Start shopping
-      </Button>
       </Link>
       </div>
       </div>

@@ -47,7 +47,7 @@ export const ProductShop = ({section}) => {
     )) : null;
     
     if (error) return <p>A network error was encountered</p>;
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="flex justify-center"><p>Loading...</p></div>;
     
     return (
     <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center">{cards}</div>

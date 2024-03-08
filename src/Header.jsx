@@ -27,7 +27,7 @@ const Header = () => {
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
           <Menu.Item key={item.link}>
-            <Link to={item.link}>{item.label}</Link>
+            <Link to={item.link} className="text-xl">{item.label}</Link>
             </Menu.Item>
         ));
 
@@ -36,7 +36,7 @@ const Header = () => {
               <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
                 <Menu.Target>
                   <Link
-                    to={link.link}
+                    to={link.link} className="text-xl"
                   >
                     <Center>
                       <span>{link.label}</span>
@@ -53,7 +53,7 @@ const Header = () => {
             <Link
               key={link.label}
               to={link.link}
-            >
+            className="text-xl">
               {link.label}
             </Link>
           );
@@ -65,7 +65,7 @@ const Header = () => {
                 <Flex direction="column">
                 <div className="flex flex-row justify-around">
                     <div className="linkSize">
-                    <Link to="/">Home</Link>
+                    <Link to="/" className="text-xl">Home</Link>
                     </div>
                     <Group gap={5} visibleFrom="sm">
                     {items}
@@ -75,13 +75,13 @@ const Header = () => {
                 <div>
                 <Drawer opened={opened} onClose={close}
                 position="right">
-                  <NavLink component={Link} label="Shop">
-                    <NavLink component={Link} label="Electronics" to='/shop/electronics'></NavLink>
-                    <NavLink component={Link} label="Jewelry" to='/shop/jewelry'></NavLink>
-                    <NavLink component={Link} label={`Men's Clothing`} to='/shop/mens%20clothing'></NavLink>
-                    <NavLink component={Link} label={`Women's Clothing`} to='/shop/womens%20clothing'></NavLink>
+                  <NavLink component={Link} label="Shop" className='text-xl'>
+                    <NavLink component={Link} label="Electronics" to='/shop/electronics' className='text-xl'></NavLink>
+                    <NavLink component={Link} label="Jewelry" to='/shop/jewelry' className='text-xl'></NavLink>
+                    <NavLink component={Link} label={`Men's Clothing`} to='/shop/mens%20clothing' className='text-xl'></NavLink>
+                    <NavLink component={Link} label={`Women's Clothing`} to='/shop/womens%20clothing' className='text-xl'></NavLink>
                   </NavLink>
-                  <NavLink component={Link} label={`Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ''}`} to='/cart'></NavLink>
+                  <NavLink component={Link} label={`Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ''}`} to='/cart' className='text-xl'></NavLink>
                 </Drawer>
                 </div>
                 </Flex>
