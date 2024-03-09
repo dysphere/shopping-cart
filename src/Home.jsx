@@ -5,6 +5,10 @@ import Autoplay from 'embla-carousel-autoplay';
 import { Paper, Title, Button } from "@mantine/core";
 import { Container, Text } from '@mantine/core';
 import Header from "./Header";
+import electronicsImage from './assets/electronics.jpg';
+import jewelryImage from './assets/jewelry.jpg';
+import mensImage from './assets/mens.jpg';
+import womensImage from './assets/womens.jpg';
 
 
 const HomeTop = () => {
@@ -50,22 +54,22 @@ return (
 
 const data = [
     {
-    image: './src/assets/electronics.jpg',
+    image: electronicsImage,
     title: 'Electronics',
     path: '/shop/electronics',
     },
     {
-    image: './src/assets/jewelry.jpg',
+    image: jewelryImage,
     title: 'Jewelry',
     path: '/shop/jewelry',
     },
     {
-    image: './src/assets/mens.jpg',
+    image: mensImage,
     title: `Men's Clothing`,
     path: '/shop/mens%20clothing'
     },
     {
-    image: './src/assets/womens.jpg',
+    image: womensImage,
     title: `Women's Clothing`,
     path: '/shop/womens%20clothing',
     },
