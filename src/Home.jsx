@@ -36,18 +36,18 @@ return (
       height={1000}
       style={{ backgroundImage: `url(${image})` }}
       className="card overflow-x-hidden" >
-        <div className="text-pad flex flex-col justify-center items-center">
-        <div>
-        <Title order={1} className="carousel-name carousel-title w-3 drop-shadow-[30px_35px_35px_rgba(0,0,0,1)]">
+        <Container fluid className="pt-60">
+        <div className="flex justify-center">
+        <Title order={1} className="carousel-name carousel-title w-3 drop-shadow-[30px_35px_35px_rgba(0,0,0,1)] pr-32">
           {title}
         </Title>
       </div>
-      <div>
-      <Link to={path} className="carousel-name flex justify-center">
+      <div className="flex justify-center">
+      <Link to={path} className="carousel-name flex justify-center text-xl underline decoration-teal-700">
         Start shopping
       </Link>
       </div>
-      </div>
+      </Container>
       </Paper>
 )
 }

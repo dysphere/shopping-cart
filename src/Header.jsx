@@ -1,5 +1,5 @@
 import './input.css';
-import { Menu, Center, Container, Burger, Group, Flex, Drawer, NavLink } from '@mantine/core';
+import { Menu, Center, Container, Burger, Group, Flex, Popover, NavLink } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from "react-router-dom";
@@ -63,6 +63,10 @@ const Header = () => {
             <header>
               <Container fluid>
                 <Flex direction="column">
+                <Popover opened={opened} onClose={close} trapFocus
+                position="bottom"
+                width="100vw"
+                offset={0}>
                 <div className="flex flex-row justify-around">
                     <div className="linkSize">
                     <Link to="/" className="text-xl">Home</Link>
@@ -70,11 +74,12 @@ const Header = () => {
                     <Group gap={5} visibleFrom="sm">
                     {items}
                   </Group>
+                  <Popover.Target>
                   <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+                  </Popover.Target>
                 </div>
                 <div>
-                <Drawer opened={opened} onClose={close}
-                position="right">
+                  <Popover.Dropdown>
                   <NavLink component={Link} label="Shop" className='text-xl'>
                     <NavLink component={Link} label="Electronics" to='/shop/electronics' className='text-xl'></NavLink>
                     <NavLink component={Link} label="Jewelry" to='/shop/jewelry' className='text-xl'></NavLink>
@@ -82,8 +87,9 @@ const Header = () => {
                     <NavLink component={Link} label={`Women's Clothing`} to='/shop/womens%20clothing' className='text-xl'></NavLink>
                   </NavLink>
                   <NavLink component={Link} label={`Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ''}`} to='/cart' className='text-xl'></NavLink>
-                </Drawer>
+                  </Popover.Dropdown>
                 </div>
+                </Popover>
                 </Flex>
               </Container>
             </header>

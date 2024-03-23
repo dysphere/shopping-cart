@@ -52,12 +52,4 @@ h1, .homepara {
 
   .carousel-name {
     color: white;
-    padding-left: 33vw;
-    padding-right: 33vw;
-  }
-
-@media (min-width: 1920px) {
-    .carousel-title {
-        padding-left: 425px;
-    }
   }
