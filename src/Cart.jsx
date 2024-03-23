@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { ShopContext } from "./ShopContext";
-import { Image } from "@mantine/core";
 import Header from "./Header";
 
 const ReceiptCard = ({image, title, quantity, price, lowerCart, higherCart, removeCart}) => {
@@ -8,7 +7,7 @@ const ReceiptCard = ({image, title, quantity, price, lowerCart, higherCart, remo
 
     return (<div className="flex md:flex-row flex-col items-center gap-4 justify-evenly py-5 border-b-2">
         <div className="size-40 flex justify-center items-center">
-        <Image src={image} alt={title} className="object-contain max-w-full max-h-full"></Image>
+        <img src={image} alt={title} className="object-contain max-w-full max-h-full"></img>
         </div>
         <p className="w-80">{title}</p>
         <div className="flex gap-3">
