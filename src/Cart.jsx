@@ -63,7 +63,7 @@ const Total = () => {
     return (<div className="flex flex-col pt-10 px-8">
         <h2 className="font-bold">Summary</h2>
         <div>{freeShipState ? <p>You have complimentary free shipping.</p> : 
-        <p>{`You need to spend $${freeShippingAmount()} to qualify for free shipping.`}</p>}</div>
+        <p>{`You need to spend $${freeShippingAmount().toFixed(2)} to qualify for free shipping.`}</p>}</div>
         <div className="flex justify-between">
             <p>Subtotal</p>
             <p>{`$${totalSum.toFixed(2)}`}</p>
